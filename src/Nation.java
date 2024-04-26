@@ -9,6 +9,8 @@ public class Nation {
     private boolean ifVoting;
     private String[] powerIndicators;
     private double gdp;
+    private double gdpPerCapita;
+    private double CINC;
     private double power;
     private double inclination;
     private boolean outcome;
@@ -21,9 +23,11 @@ public class Nation {
         this.type = type;
         this.votingOrder = order;
     }
-    public Nation (String name, double gdp){
+    public Nation (String name, double gdp,double gdpPerCapita,double CINC){
         this.name=name;
         this.gdp=gdp;
+        this.gdpPerCapita=gdpPerCapita;
+        this.CINC=CINC;
    }
 
     public String getName() {
@@ -32,6 +36,9 @@ public class Nation {
 
     public String getType() {
         return type;
+    }
+    public double getGDP(){
+        return this.gdp;
     }
 
     public int getOrder() {
@@ -67,8 +74,8 @@ public class Nation {
         }
     }
     public double getPower(){
+        return (((this.gdp*this.gdpPerCapita)/(101.3E12*18381))+this.CINC)/2;
 
-        return (((data.get(0)*data.get(1))/(101.3E12*18381))+data.get(2))/2;
     }
 
     public double calcualtePower(double GDP, double GDPPerCapita, double CINC){
