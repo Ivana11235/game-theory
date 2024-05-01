@@ -4,47 +4,48 @@ import java.io.*;
 public class inclinator {
 
     public ArrayList<Nation> nations;
-    
-    private ArrayList<String> cs{
-       ArrayList<String> cs=new ArrayList<>();
-       cs.add("cyber");
-       cs.add("internet");}
-    private ArrayList<String> hr{
-        ArrayList<String> hr=new ArrayList<>();
-        hr.add("human rights");
-        hr.add("humanitarian");
-        hr.add("refugee");
-    }
-    private ArrayList<String> wr{
-        ArrayList<String> wr=new ArrayList<>();
-        wr.add("women");
-        wr.add("female");
-    }
-    private ArrayList<String> g{
-        ArrayList<String> g=new ArrayList<>();
-        g.add("gender");}
+    private ArrayList<String> cs=new ArrayList<String>(){{
+       ArrayList<String> cs;
+       add("cyber");
+       add("internet");}};
+    private ArrayList<String> hr=new ArrayList<String>(){{
 
-    private ArrayList<String> e{
-        ArrayList<String> e=new ArrayList<>();
-        e.add("environment");
-        e.add("emission");
-        e.add("climate");
-    }
+        add("human rights");
+        add("humanitarian");
+        add("refugee");
+    }};
+    private ArrayList<String> wr=new ArrayList<String>(){{
 
-    private HashMap<String, ArrayList<String>> key{
-        HashMap<String, ArrayList<String>> key= new HashMap ();
-        key.put("cs",cs);
-        key.put("hr",hr);
-        key.put("wr",wr);
-        key.put("g",g);
-        key.put("e",e);
-    };
+       add("women");
+       add("female");
+    }};
+    private ArrayList<String> g=new ArrayList<String>(){{
+        //ArrayList<String> g=new ArrayList<>();
+        add("gender");}};;
+
+    private ArrayList<String> e=new ArrayList<String>(){{
+
+        add("environment");
+        add("emission");
+        add("climate");
+    }};
+
+    private HashMap<String, ArrayList<String>> key=new HashMap (){{
+
+        put("cs",cs);
+        put("hr",hr);
+        put("wr",wr);
+        put("g",g);
+        put("e",e);
+    }};
+
+
 
     private ArrayList<Float> Inclination=new ArrayList<>();
 
-   
-    
-    public void inclinate(String keyword){
+    public void inclinate(String keyword) throws FileNotFoundException {
+
+
 
         int fileCount=0;
         File[] fileArray=new File("!!!!!!!input!!!").listFiles();
@@ -71,7 +72,11 @@ public class inclinator {
                             n.inclination+=0.5;}
                     }
                 }
-            }}
+            }s.close();
+        }
         for (Nation n: nations){
             n.inclination/=fileCount;}
-        s.close;
+
+}
+
+}
