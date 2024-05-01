@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Nation {
     private String name;
+    public String abbr;
     private String type;
     private int votingOrder;
     private String block;
