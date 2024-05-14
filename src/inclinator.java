@@ -1,0 +1,82 @@
+import java.util.*;
+import java.io.*;
+
+public class inclinator {
+
+    public ArrayList<Nation> nations;
+    private ArrayList<String> cs=new ArrayList<String>(){{
+        ArrayList<String> cs;
+        add("cyber");
+        add("internet");}};
+    private ArrayList<String> hr=new ArrayList<String>(){{
+
+        add("human rights");
+        add("humanitarian");
+        add("refugee");
+    }};
+    private ArrayList<String> wr=new ArrayList<String>(){{
+
+        add("women");
+        add("female");
+    }};
+    private ArrayList<String> g=new ArrayList<String>(){{
+        //ArrayList<String> g=new ArrayList<>();
+        add("gender");}};;
+
+    private ArrayList<String> e=new ArrayList<String>(){{
+
+        add("environment");
+        add("emission");
+        add("climate");
+    }};
+
+    private HashMap<String, ArrayList<String>> key=new HashMap (){{
+
+        put("cs",cs);
+        put("hr",hr);
+        put("wr",wr);
+        put("g",g);
+        put("e",e);
+    }};
+
+
+
+    private ArrayList<Float> Inclination=new ArrayList<>();
+
+    public void inclinate(String keyword) throws FileNotFoundException {
+
+
+
+        int fileCount=0;
+        File[] fileArray=new File("!!!!!!!input!!!").listFiles();
+
+        for(File f: fileArray){
+            boolean checkFile=false;
+            Scanner s=new Scanner(f); // to read the files
+            for(int i=0;i<10;i++){
+                String line=s.nextLine();
+                ArrayList list =key.get(keyword);
+                for (Object word: list){
+                    if (line.contains(word.toString())){
+                        checkFile=true;
+                    }
+                }}
+            if (checkFile==true){
+                fileCount+=1;
+                while (s.hasNextLine()){
+                    String line=s.nextLine();
+                    for (Nation n:nations){
+                        if (line.contains(n.abbr)&&line.contains("dY")){
+                            n.inclination+=1;
+                        } else if (line.contains(n.abbr)&&line.contains("dA")) {
+                            n.inclination+=0.5;}
+                    }
+                }
+            }s.close();
+        }
+        for (Nation n: nations){
+            n.inclination/=fileCount;}
+
+    }
+
+}

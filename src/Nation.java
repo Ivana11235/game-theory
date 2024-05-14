@@ -4,6 +4,7 @@ public class Nation {
 
     private String type;
     private int votingOrder;
+    public String abbr;
     private String block;
     private boolean ifVoting;
     private String continent;
