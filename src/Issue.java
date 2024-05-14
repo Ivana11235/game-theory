@@ -37,12 +37,7 @@ public class Issue {
     }
 
     public double calculateInclination(Nation nation){
-        double total=0;
-        for (int i=0;i<incIndicator.size();i++){
-            total+=nation.getData(incIndicator.get(i))/getLimit(i);
-
-        }
-        return total/incIndicator.size();
+        return 0;
 
     }
 
