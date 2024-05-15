@@ -1,19 +1,35 @@
 import java.util.ArrayList;
 
 public class Issue {
-    private String name;
+    public String name;
     private String location;
     private String date;
+    public String type;
     public ArrayList<Integer> incIndicator=new ArrayList<>();
     public ArrayList<Double> limits=new ArrayList<>();
     public ArrayList<Integer> sign=new ArrayList<>();
 
+    public Issue(){
 
+    }
 
     public Issue(String name, String location, String date) {
         this.name = name;
         this.location = location;
         this.date = date;
+    }
+    public Issue(String name, String type){
+        this.name=name;
+        this.type=type;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public void setType(String type){
+        this.type=type;
+    }
+    public String getType(){
+        return this.type;
     }
 
     public String getName() {

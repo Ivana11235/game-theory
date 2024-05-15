@@ -28,9 +28,10 @@ public class Nation {
         this.CINC=CINC;
         this.continent=continent;
    }
-   public Nation (String name, double power){
+   public Nation (String name, double power, String continent){
         this.name=name;
         this.power=power;
+        this.continent=continent;
     }
 
     public String getName() {
@@ -49,7 +50,7 @@ public class Nation {
         return block;
     }
 
-    public double getInclination() {
+    public double getInclination(Issue issue) {
 
         return inclination;
     }
@@ -73,6 +74,12 @@ public class Nation {
 
     public void setPower(double number){
         this.power=number;
+    }
+    public double getCINC(){
+        return this.CINC;
+    }
+    public String getContinent(){
+        return continent;
     }
 
 

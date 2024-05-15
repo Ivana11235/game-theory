@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class GeneralAssembly {
-    ArrayList<Nation> nations = new ArrayList<Nation>() {
+    public ArrayList<Nation> nations = new ArrayList<Nation>() {
         {
             add( new Nation("AFGHANISTAN", 14.27E9, 356, 0.001420, "Asia"));
             add( new Nation("ALBANIA", 18.88E9, 6810, 0.000276, "Europe"));
@@ -54,7 +54,7 @@ public class GeneralAssembly {
             add( new Nation("DOMINICA", 0.61E9, 8351, 0.000002, "North America"));
             add( new Nation("DOMINICAN REPUBLIC", 113.64E9, 10111, 0.000969, "North America"));
             add( new Nation("ECUADOR", 115.05E9, 6720, 0.001518, "South America"));
-            add( new Nation("EGYPT", 476.748E9, 3542, 0.009713, "Africa"));
+            add( new Nation("EGYPT", 476.748E9, 4295, 0.009713, "Africa"));
             add( new Nation("EL SALVADOR", 32.49E9, 8517, 0.000575, "North America"));
             add( new Nation("EQUATORIAL GUINEA", 11.81E9, 21695, 0.000109, "Africa"));
             add( new Nation("ERITREA", 2.58E9, 714, 0.002256, "Africa"));
@@ -129,7 +129,7 @@ public class GeneralAssembly {
             add( new Nation("New Zealand", 228.96E9, 48419, 0.001911, "Oceania"));
             add( new Nation("Nicaragua", 14.97E9, 2255, 0.000515, "North America"));
             add( new Nation("Niger", 12.82E9, 585, 0.000461, "Africa"));
-            add( new Nation("Nigeria", 448.12E9, 2163, 0.023842, "Africa"));
+            add( new Nation("Nigeria", 472.6E9, 2163, 0.023842, "Africa"));
             add( new Nation("North Macedonia (formerly Macedonia)", 12.59E9, 6591, 0.000220, "Europe"));
             add( new Nation("Norway", 434.75E9, 108729, 0.002049, "Europe"));
             add( new Nation("Oman", 78.52E9, 25057, 0.000584, "Asia"));
@@ -199,7 +199,159 @@ public class GeneralAssembly {
 
         }
     };
-    ArrayList<Integer>totalVotes=new ArrayList<>();
+    public ArrayList<Integer>totalVotes=new ArrayList<>();
+    public ArrayList<Issue>issues=new ArrayList<Issue>(){
+        {
+            add(new Issue("Climate change","Environmental"));
+            add(new Issue("Climate change", "Environmental"));
+            add(new Issue("Global poverty", "Human rights"));
+            add(new Issue("Human rights", "Human rights"));
+            add(new Issue("Cyber security", "Security"));
+            add(new Issue("Trade agreements", "Economic"));
+            add(new Issue("Healthcare access", "Human rights"));
+            add(new Issue("Education reform", "Human rights"));
+            add(new Issue("Gender equality", "Gender"));
+            add(new Issue("Terrorism", "War"));
+            add(new Issue("Environmental conservation", "Environmental"));
+            add(new Issue("Income inequality", "Human rights"));
+            add(new Issue("Refugee crisis", "Human rights"));
+            add(new Issue("Nuclear disarmament", "Security"));
+            add(new Issue("Water scarcity", "Environmental"));
+            add(new Issue("Political corruption", "Political"));
+            add(new Issue("Drug trafficking", "Security"));
+            add(new Issue("Racial discrimination", "Human rights"));
+            add(new Issue("Poverty eradication", "Human rights"));
+            add(new Issue("Energy sustainability", "Environmental"));
+            add(new Issue("Armed conflicts", "War"));
+            add(new Issue("Internet censorship", "Political"));
+            add(new Issue("Labor rights", "Human rights"));
+            add(new Issue("Immigration policies", "Political"));
+            add(new Issue("Maritime security", "Security"));
+            add(new Issue("Food security", "Environmental"));
+            add(new Issue("Natural disaster response", "Environmental"));
+            add(new Issue("Digital privacy", "Security"));
+            add(new Issue("Access to clean water", "Environmental"));
+            add(new Issue("Cultural preservation", "Human rights"));
+            add(new Issue("Child labor", "Human rights"));
+            add(new Issue("Economic inequality", "Human rights"));
+            add(new Issue("Freedom of speech", "Human rights"));
+            add(new Issue("Privacy rights", "Human rights"));
+            add(new Issue("Illegal wildlife trade", "Environmental"));
+            add(new Issue("Refugee rights", "Human rights"));
+            add(new Issue("Political instability", "Political"));
+            add(new Issue("Drug abuse", "Social"));
+            add(new Issue("Ethnic conflicts", "Human rights"));
+            add(new Issue("Corruption in sports", "Political"));
+            add(new Issue("Access to education", "Human rights"));
+            add(new Issue("Climate refugee crisis", "Human rights"));
+            add(new Issue("Childhood immunization", "Health"));
+            add(new Issue("Eating disorders", "Health"));
+            add(new Issue("Public health infrastructure", "Health"));
+            add(new Issue("Nuclear energy safety", "Environmental"));
+            add(new Issue("Tackling extremism", "Security"));
+            add(new Issue("Income gap", "Human rights"));
+            add(new Issue("Animal rights", "Environmental"));
+            add(new Issue("Urbanization challenges", "Environmental"));
+            add(new Issue("Human trafficking", "Human rights"));
+            add(new Issue("Internet freedom", "Political"));
+            add(new Issue("Child marriage", "Human rights"));
+            add(new Issue("Water pollution", "Environmental"));
+            add(new Issue("Youth unemployment", "Social"));
+            add(new Issue("Freedom of religion", "Human rights"));
+            add(new Issue("Deforestation", "Environmental"));
+            add(new Issue("Economic sanctions", "Political"));
+            add(new Issue("Refugee resettlement", "Human rights"));
+            add(new Issue("Cybercrime", "Security"));
+            add(new Issue("Hate crimes", "Human rights"));
+            add(new Issue("Pollution control", "Environmental"));
+            add(new Issue("Poverty cycle", "Human rights"));
+            add(new Issue("Surveillance state", "Security"));
+            add(new Issue("Mental health awareness", "Health"));
+            add(new Issue("Access to clean sanitation", "Health"));
+            add(new Issue("Access to reproductive healthcare", "Health"));
+            add(new Issue("Disaster preparedness", "Environmental"));
+            add(new Issue("Discrimination in the workplace", "Human rights"));
+            add(new Issue("Renewable energy", "Environmental"));
+            add(new Issue("Political polarization", "Political"));
+            add(new Issue("Youth empowerment", "Social"));
+            add(new Issue("Biodiversity loss", "Environmental"));
+            add(new Issue("Arms trade", "War"));
+            add(new Issue("Waste management", "Environmental"));
+            add(new Issue("Violence against women", "Human rights"));
+            add(new Issue("Air pollution", "Environmental"));
+            add(new Issue("Genetic privacy", "Security"));
+            add(new Issue("Sustainable agriculture", "Environmental"));
+            add(new Issue("Political censorship", "Political"));
+            add(new Issue("Elderly care", "Social"));
+            add(new Issue("Ocean pollution", "Environmental"));
+            add(new Issue("Humanitarian aid", "Human rights"));
+            add(new Issue("Artificial intelligence ethics", "Security"));
+            add(new Issue("Access to affordable healthcare technology", "Health"));
+            add(new Issue("Healthcare for veterans", "Health"));
+            add(new Issue("Health literacy in underserved populations", "Health"));
+            add(new Issue("Chronic pain management", "Health"));
+            add(new Issue("Telemedicine and remote healthcare", "Health"));
+            add(new Issue("Ocean pollution", "Environmental"));
+            add(new Issue("Humanitarian aid", "Human rights"));
+            add(new Issue("Artificial intelligence ethics", "Security"));
+            add(new Issue("Child protection", "Human rights"));
+            add(new Issue("Space exploration", "Scientific"));
+            add(new Issue("Access to healthcare", "Human rights"));
+            add(new Issue("Climate justice", "Environmental"));
+            add(new Issue("Worker exploitation", "Human rights"));
+            add(new Issue("Urban development", "Environmental"));
+            add(new Issue("Freedom of assembly", "Human rights"));
+            add(new Issue("Land rights", "Human rights"));
+            add(new Issue("Nuclear weapons proliferation", "War"));
+            add(new Issue("Housing affordability", "Social"));
+            add(new Issue("E-waste management", "Environmental"));
+            add(new Issue("Disability rights", "Human rights"));
+            add(new Issue("Genetic engineering", "Science"));
+            add(new Issue("Nutrition education", "Health"));
+            add(new Issue("Community health promotion", "Health"));
+            add(new Issue("Access to mental health medications", "Health"));
+            add(new Issue("Healthcare for people with disabilities", "Health"));
+            add(new Issue("Preventive healthcare services", "Health"));
+            add(new Issue("Healthcare for homeless populations", "Health"));
+            add(new Issue("Youth mental health", "Health"));
+            add(new Issue("Access to clean air", "Health"));
+            add(new Issue("Healthcare for refugees and asylum seekers", "Health"));
+            add(new Issue("Preventable diseases eradication", "Health"));
+            add(new Issue("Healthcare for indigenous populations", "Health"));
+            add(new Issue("Healthcare for prisoners", "Health"));
+            add(new Issue("Accessible healthcare facilities and transportation", "Health"));
+            add(new Issue("Access to clean energy", "Environmental"));
+            add(new Issue("Income tax reform", "Economic"));
+            add(new Issue("Civic engagement", "Political"));
+            add(new Issue("Substance abuse prevention", "Health"));
+            add(new Issue("Healthcare for the elderly", "Health"));
+            add(new Issue("Obesity prevention", "Health"));
+            add(new Issue("Illegal immigration", "Political"));
+            add(new Issue("Erosion of privacy rights", "Human rights"));
+            add(new Issue("Water conservation", "Environmental"));
+            add(new Issue("Child welfare", "Human rights"));
+            add(new Issue("Space debris", "Environmental"));
+            add(new Issue("Indigenous rights", "Human rights"));
+            add(new Issue("Nuclear accidents", "Security"));
+            add(new Issue("Healthcare for marginalized communities", "Health"));
+            add(new Issue("Palliative care and end-of-life support", "Health"));
+
+
+        }
+
+    };
+    public Issue issue;
+
+    public void selectIssue(){
+        Random rand= new Random();
+        int n=rand.nextInt(issues.size());
+        this.issue = issues.get(n);
+
+    }
+    public Issue getIssue(){
+        return this.issue;
+
+    }
 
     public void addNation(String Country, double GDP,double GDPperCapita, double CINC,String continent){
         Nation nation=new Nation(Country,GDP,GDPperCapita,CINC,continent);
@@ -233,6 +385,7 @@ public class GeneralAssembly {
         }
         for (Nation nation: nations){
             if (nation.getPower()>2*0.0051){
+
 
                 l+=1;
             }
