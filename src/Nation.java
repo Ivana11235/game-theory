@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Random;
+
 public class Nation {
-    String name;
+    private String name;
 
     private String type;
+    public boolean isFollower;
     private int votingOrder;
     public String abbr;
     private String block;
@@ -14,6 +17,7 @@ public class Nation {
     public double power;
     public double inclination;
     private boolean outcome;
+    public boolean isRebel;
     private int vote;
 
     public Nation(String name, String type, int order) {
@@ -32,6 +36,8 @@ public class Nation {
         this.name=name;
         this.power=power;
         this.continent=continent;
+        this.isFollower=false;
+        this.isRebel=false;
     }
 
     public String getName() {
@@ -50,9 +56,23 @@ public class Nation {
         return block;
     }
 
+    public void generateInclination(){
+        Random rand = new Random();
+        this.inclination = rand.nextDouble();
+    }
+    public void setInclination(double Inc){
+        this.inclination=Inc;
+
+    }
+
+
     public double getInclination(Issue issue) {
 
         return inclination;
+    }
+    public double getInclination() {
+
+        return this.inclination;
     }
 
     public boolean getOutcome() {

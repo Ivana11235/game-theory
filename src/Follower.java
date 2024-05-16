@@ -5,19 +5,23 @@ public class Follower extends Nation {
 
     public boolean hasLeader;
 
+    private boolean ifRebel;
+
     public Follower(String name, String type, int order, String title) {
         super(name, type, order);
         this.leader = null;
     }
 
-    public void rebel() {
-        // Add rebel logic here
+    public void rebelAgainstLeader() {
+        ifRebel=true;
     }
 
     public Follower(String name, double power, String continent) {
         super(name, power,continent);
         this.leader=null;
         this.hasLeader=false;
+        this.ifRebel=false;
+        this.isFollower=true;
     }
 
     public void makeVote() {

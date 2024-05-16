@@ -352,6 +352,10 @@ public class GeneralAssembly {
         return this.issue;
 
     }
+    public void initiateConference(){
+        selectIssue();
+        System.out.println(getIssue().getName());
+    }
 
     public void addNation(String Country, double GDP,double GDPperCapita, double CINC,String continent){
         Nation nation=new Nation(Country,GDP,GDPperCapita,CINC,continent);

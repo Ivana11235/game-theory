@@ -1,24 +1,29 @@
-import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        GeneralAssembly assembly=new GeneralAssembly();
+        GeneralAssembly assembly = new GeneralAssembly();
+        assembly.initiateConference();
         assembly.printPowers();
         assembly.selectIssue();
         System.out.println(assembly.getIssue().getName());
-        StagHunt s=new StagHunt();
+
+        // Generate inclinations for each nation
+
+
+        StagHunt s = new StagHunt(assembly);
+
         s.addNationPowers();
         s.createLeaders();
         s.createFollowers();
         s.createRegionalBlocks();
-        s.printBlocks();
-        double f=0;
-        for (Nation nation: assembly.nations){
-            f+=nation.getCINC();
+        s.initializeInclinations();
+        s.generateDiffThreshold();
+        // 5 Rounds of discussion
+        for (int i=0;i<5;i++){
+            s.printBlocks();
+            s.adjustNations();
         }
-        System.out.println(f);
 
-
-
+        System.out.println(assembly.nations.get(192).getInclination());
 
     }
 }
