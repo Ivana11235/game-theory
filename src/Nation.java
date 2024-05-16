@@ -79,8 +79,20 @@ public class Nation {
         return outcome;
     }
 
-    public void makeVote(int vote) {
-        this.vote = vote;
+    public void makeVote() {
+
+
+        double x=getInclination();
+        if (x<=0.45){
+            vote=0;//No
+        }
+        else if(x>0.45 && x<=0.6){
+            vote=1;// Abstain
+
+        }
+        else {
+            vote=2;//Yes
+        }
     }
 
     public double CalculatePower(){
