@@ -4,11 +4,11 @@ public class Stackelberg {
 //same production cost c=cl=c; Q=q1+q2; d=a-bq;
     private int q1;
     private int q2;
-    private int c;
+    private int c=1;
     //predetermined
-    private int a;
+    private int a=1;
     //predetermined
-    private int b;
+    private int b=1;
     //predetermined
 
     ArrayList<ArrayList<Nation>> blocs=new ArrayList<ArrayList<Nation>>();
@@ -25,17 +25,33 @@ public class Stackelberg {
     public void startStackelberg(int blocNum){
         q1=(a-c)/2/b;
         q2=(a-c)/4/b;
-        blocs.get(blocNum).get(0).inclination=(blocs.get(blocNum).get(0).inclination+q1)/2;
+        //leader
+        double lpb=blocs.get(blocNum).get(0).inclination;
+        double lpab=q1/lpb;
+        if (lpab >1){
+            lpab=(q1+lpb)/2;
+        }
+        blocs.get(blocNum).get(0).inclination=lpab;
+
+       //follower
         int followerSum=0;
         for (int i=1; i<blocs.get(blocNum).size();i++){
-            followerSum+=blocs.get(blocNum).get(i).inclination;
+            followerSum+=blocs.get(blocNum).get(i).getInclination();
         }
-        int followerAve=followerSum/(blocs.get(blocNum).size()-1);
-        int fNew=(followerAve+q2)/2;
+        double fpb= (double) followerSum /(blocs.get(blocNum).size()-1);
         for (int i=1; i<blocs.get(blocNum).size();i++){
-            blocs.get(blocNum).get(i).inclination=(blocs.get(blocNum).get(i).inclination+fNew)/2;
+            double fpab=q2/fpb;
+            if(fpab>1){
+                fpab=(q2+fpb)/2;
+            }
+            blocs.get(blocNum).get(i).inclination=fpab;
         }
 
+
+
+    }
+
+}
 
 
     }
