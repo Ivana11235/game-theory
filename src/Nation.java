@@ -51,11 +51,12 @@ public class Nation {
         economicStrength=number;
 
     }
-    public void setAbbr(){
-        abbr="";
-        for (int i=0;i<3;i++){
-            abbr+=getName().charAt(i);
+    public void setAbbr() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 3; i++) {
+            stringBuilder.append(getName().charAt(i));
         }
+        abbr = stringBuilder.toString();
     }
     public String getAbbr(){
         return abbr;
