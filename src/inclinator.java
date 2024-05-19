@@ -8,8 +8,7 @@ public class inclinator {
 
     public ArrayList<Nation> nations;
      
-
-    private ArrayList<String> cs=new ArrayList<String>(){{
+ private ArrayList<String> cs=new ArrayList<String>(){{
        ArrayList<String> cs;
        add("cyber");
        add("internet");}};
@@ -61,7 +60,8 @@ public class inclinator {
     
 
     public void inclinate(String keyword) throws FileNotFoundException {
-
+        for (Nation n:nations){
+            n.inclination=0;}
 
 
         int fileCount=0;
@@ -71,7 +71,6 @@ public class inclinator {
             ArrayList list =key.get(keyword);
             boolean checkFile=false;
             Scanner s=new Scanner(f);
-            System.out.println(s.nextLine());
             for(int i=0;i<10;i++){
                 String line=s.nextLine();
 
@@ -80,10 +79,12 @@ public class inclinator {
                         checkFile=true;
                     }
                 }}
+            //good
             if (checkFile){
                 fileCount+=1;
                 while (s.hasNextLine()){
                     String line=s.nextLine();
+
                     for (Nation n:nations){
                         if (line.contains(n.abbr)&&line.contains("dY")){
                             n.inclination+=1;
