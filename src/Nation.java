@@ -51,6 +51,15 @@ public class Nation {
         economicStrength=number;
 
     }
+    public void setAbbr(){
+        abbr="";
+        for (int i=0;i<3;i++){
+            abbr+=getName().charAt(i);
+        }
+    }
+    public String getAbbr(){
+        return abbr;
+    }
 
     public String getName() {
         return this.name;
@@ -137,6 +146,25 @@ public class Nation {
 
     public int getVote(){
         return this.vote;
+    }
+    public void addPayoff(){
+        Random rand= new Random();
+
+        double x=0.05 *rand.nextDouble();
+        switch (vote){
+            case 0:
+                power-=x*getPower();
+               // System.out.printf("\nPower decreases by %.1f%% ",x*100);
+                break;
+            case 1:
+                //System.out.println("\n Power remains the same");
+                break;
+            case 2:
+                power+=x*getPower();
+                //System.out.printf("\nPower increases by %.1f%% ",x*100);
+                break;
+        }
+
     }
 
 

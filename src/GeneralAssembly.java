@@ -203,7 +203,6 @@ public class GeneralAssembly {
     public ArrayList<Issue>issues=new ArrayList<Issue>(){
         {
             add(new Issue("Climate change","Environmental"));
-            add(new Issue("Climate change", "Environmental"));
             add(new Issue("Global poverty", "Human rights"));
             add(new Issue("Human rights", "Human rights"));
             add(new Issue("Cyber security", "Security"));
@@ -743,6 +742,8 @@ public class GeneralAssembly {
     }
 
     public void endConference(){
+        double totalPower=0;
+        double newTotalPower=0;
         int no=0;
         int abstain=0;
         int yes=0;
@@ -764,11 +765,23 @@ public class GeneralAssembly {
                     yes++;
                     break;
             }
-            System.out.println(nation.getName()+"  "+ nation.getInclination()+" "+str);
+            nation.addPayoff();
+            System.out.print(nation.getName()+"  "+ nation.getInclination()+" "+str+ " ");
+            System.out.printf("%.5f\n",nation.getPower());
+            totalPower+=nation.getPower();
+
         }
+        for (Nation nation: nations){
+            nation.setPower(nation.getPower()/totalPower);
+            newTotalPower+=nation.getPower();
+            System.out.print(nation.getName()+"  "+ nation.getInclination()+" "+str+ " ");
+            System.out.printf("%.6f\n",nation.getPower());
+        }
+
         System.out.print("Total Yes votes: " +yes+
                 "\nTotal No Votes: "+ no+
-                "\nTotal Abstain Votes: "+abstain
+                "\nTotal Abstain Votes: "+abstain+
+                "\nNew total power: "+newTotalPower
         );
         if (yes>no){
             System.out.printf("\n Final Result: The resolution is passed");

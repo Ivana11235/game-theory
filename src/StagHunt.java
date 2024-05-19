@@ -14,6 +14,15 @@ public class StagHunt  {
     public StagHunt(GeneralAssembly assembly){
         this.assembly=assembly;
     }
+    public StagHunt (){
+
+    }
+    public void setAbbreviations(){
+        for (Nation nation:assembly.nations){
+            nation.setAbbr();
+            System.out.println(nation.getAbbr());
+        }
+    }
 
     public void addNationPowers() {
         double num=0;
@@ -24,6 +33,8 @@ public class StagHunt  {
         }
         for (Nation nation: assembly.nations){
             nation.setPower(nation.getPower()/num);
+            System.out.print(nation.getName()+" ");
+            System.out.printf("%.6f\n",nation.getPower());
         }
     }
     public void addEconomicStrengths() {
@@ -35,8 +46,11 @@ public class StagHunt  {
         }
         for (Nation nation: assembly.nations){
             nation.setEconomicStrength(nation.getEconomicStrength()/num);
+            System.out.print("\n"+nation.getName());
+            System.out.printf("%.5f ",nation.getEconomicStrength());
         }
     }
+
     public void generateDiffThreshold(){
         Random rand = new Random();
         double minDiff = 0.1;
@@ -54,7 +68,7 @@ public class StagHunt  {
 
     public void createLeaders() {
         for (Nation nation :assembly.nations ) {
-            if (nation.getPower()>=0.005*1.9){
+            if (nation.getPower()>=0.005*1.8){
                 System.out.printf(nation.getName()+"  %.2f\n",nation.getPower()*100);
                 Leader leader = new Leader(nation.getName(), nation.getPower(),nation.getContinent());
                 leaders.add(leader);}
@@ -130,8 +144,31 @@ public class StagHunt  {
         }
     }
 
-    public void createEconomicBlocks( ){
+    public void createEconomicBlocks() {
+        Random rand = new Random();
+        int z = 0;
+        Collections.shuffle(leaders);
+        Collections.shuffle(followers);
 
+        // Create blocks for each leader
+        for (Leader leader : leaders) {
+            ArrayList<Nation> block = new ArrayList<Nation>();
+            Blocks.add(block);
+            block.add(leader);
+        }
+
+        // Assign followers to leaders based on economic strength
+        while (z < followers.size()) {
+            int n = rand.nextInt(leaders.size());
+            int s = rand.nextInt(followers.size());
+            if (followers.get(s).getLeader() == null) {
+                if (Math.abs(followers.get(s).getEconomicStrength() - leaders.get(n).getEconomicStrength()) <= 0.00005) {
+                    followers.get(s).setLeader(leaders.get(n));
+                    Blocks.get(n).add(followers.get(s));
+                    z++;
+                }
+            }
+        }
     }
     public void initializeInclinations(){
         for (ArrayList<Nation>block:Blocks){
@@ -156,6 +193,7 @@ public class StagHunt  {
         }
         System.out.println(j);
     }
+
     public void generateInclinations(){
         for (int i=0;i<assembly.nations.size();i++){
             assembly.nations.get(i).generateInclination();
@@ -225,6 +263,7 @@ public class StagHunt  {
                 }
             }
         }
+
         System.out.printf("\nAccepted difference: %.2f \n",diffThreshold);
         System.out.println(rebels);
         int minimumRebels=(int)(Math.ceil((2.0/3.0) * (block.size()-1)));
