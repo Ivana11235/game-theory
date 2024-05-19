@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class Stacklberg {
+public class Stackelberg {
 //same production cost c=cl=c; Q=q1+q2; d=a-bq;
     private int q1;
     private int q2;
@@ -22,7 +22,7 @@ public class Stacklberg {
     //revenue: estimated gains
     //through rounds of discussion, each nation modifies their inclination according to the estimates gain of the resolutions
 
-    public void startStacklberg(int blocNum){
+    public void startStackelberg(int blocNum){
         q1=(a-c)/2/b;
         q2=(a-c)/4/b;
         //leader
