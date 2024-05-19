@@ -9,7 +9,9 @@ public class Nation {
     private int votingOrder;
     public String abbr;
     private String block;
+    private double economicStrength;
     private boolean ifVoting;
+    private double GNIperCapita;
     private String continent;
     private double gdp;
     private double gdpPerCapita;
@@ -38,6 +40,16 @@ public class Nation {
         this.continent=continent;
         this.isFollower=false;
         this.isRebel=false;
+    }
+    public void setGNIPerCapita(double GNI){
+        this.GNIperCapita=GNI;
+    }
+    public double getGNIPerCapita(){
+        return this.GNIperCapita;
+    }
+    public void setEconomicStrength(double number){
+        economicStrength=number;
+
     }
 
     public String getName() {
@@ -79,6 +91,10 @@ public class Nation {
         return outcome;
     }
 
+    public double getEconomicStrength(){
+        return economicStrength;
+    }
+
     public void makeVote() {
 
 
@@ -100,6 +116,11 @@ public class Nation {
                 return this.power;
 
     }
+    public double calculateEconomicStrength(){
+        economicStrength=gdp*0.6+gdpPerCapita*0.2+GNIperCapita*0.2;
+        return economicStrength;
+    }
+
     public double getPower(){
         return this.power;
     }
@@ -112,6 +133,10 @@ public class Nation {
     }
     public String getContinent(){
         return continent;
+    }
+
+    public int getVote(){
+        return this.vote;
     }
 
 

@@ -7,8 +7,6 @@ public class Main {
         System.out.println(assembly.getIssue().getName());
 
         // Generate inclinations for each nation
-
-
         StagHunt s = new StagHunt(assembly);
 
         s.addNationPowers();
@@ -22,6 +20,7 @@ public class Main {
             s.printBlocks();
             s.adjustNations();
         }
+        assembly.endConference();
 
         System.out.println(assembly.nations.get(192).getInclination());
 

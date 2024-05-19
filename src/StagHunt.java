@@ -7,6 +7,9 @@ public class StagHunt  {
     private GeneralAssembly assembly;
 
     public ArrayList<ArrayList<Nation>>Blocks = new ArrayList<ArrayList<Nation> >();
+
+    public ArrayList<Follower> BLockFollowers=new ArrayList<>();
+
     private double incDiff;
     public StagHunt(GeneralAssembly assembly){
         this.assembly=assembly;
@@ -21,6 +24,17 @@ public class StagHunt  {
         }
         for (Nation nation: assembly.nations){
             nation.setPower(nation.getPower()/num);
+        }
+    }
+    public void addEconomicStrengths() {
+        double num=0;
+        for (Nation nation: assembly.nations){
+
+            num+=nation.calculateEconomicStrength();
+
+        }
+        for (Nation nation: assembly.nations){
+            nation.setEconomicStrength(nation.getEconomicStrength()/num);
         }
     }
     public void generateDiffThreshold(){
@@ -43,7 +57,8 @@ public class StagHunt  {
             if (nation.getPower()>=0.005*1.9){
                 System.out.printf(nation.getName()+"  %.2f\n",nation.getPower()*100);
                 Leader leader = new Leader(nation.getName(), nation.getPower(),nation.getContinent());
-                leaders.add(leader);}}
+                leaders.add(leader);}
+        }
     }
 
     public void printleaders(){
@@ -60,6 +75,8 @@ public class StagHunt  {
             followers.add(follower);}}
 
     }
+
+
     public void printFollowers() {
         int z = 0;
         System.out.println("Followers Are:");
@@ -112,6 +129,10 @@ public class StagHunt  {
             }
         }
     }
+
+    public void createEconomicBlocks( ){
+
+    }
     public void initializeInclinations(){
         for (ArrayList<Nation>block:Blocks){
             for(Nation nation:block){
@@ -142,16 +163,14 @@ public class StagHunt  {
     }
     public void startDiscussion(){
 
-
             printBlocks();
-
 
     }
     public void applyStagHunt(){
 
         for (ArrayList<Nation> block:Blocks){
             for (Nation nation : block) {
-                double changeRatio = 0;
+                double changeRatio;
                 if (nation.isRebel){
                     double num=nation.getPower()/block.get(0).getPower();
                     if (num>0.1){
@@ -186,11 +205,10 @@ public class StagHunt  {
                     else if (nation.getInclination()<0){
                         nation.setInclination(0);
                     }
-                }}
+                }
+            }
 
         }
-
-
     }
     public boolean Rebellion(ArrayList<Nation>block, double diffThreshold) {
         Random rand = new Random();
@@ -263,13 +281,6 @@ public class StagHunt  {
             }
         }
     }
-
-
-
-
-
-
-
 
 
 }
