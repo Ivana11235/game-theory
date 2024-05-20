@@ -1,6 +1,13 @@
 import java.util.*;
-
+/**
+ * The GeneralAssembly class represents a general assembly of nations. It contains a list of nations and a list of issues
+   to be discussed. The assembly can initiate a conference, where an issue of discussion is selected, and each nation in the assembly
+   participates by voting and adding a payoff based on their power. After the conference ends, the results are calculated,
+   including the voting statistics, total power, and the final result of the resolution. The class also determines the outcome
+   for rebellious nations and provides information on the payoff distribution.
+ */
 public class GeneralAssembly {
+    // List of nations in the general assembly
     public ArrayList<Nation> nations = new ArrayList<Nation>() {
         {
             add( new Nation("AFGHANISTAN", 14.27E9, 356, 0.001420, "Asia"));
@@ -199,36 +206,27 @@ public class GeneralAssembly {
 
         }
     };
-    public ArrayList<Integer>totalVotes=new ArrayList<>();
+
+    // List of issues to be discussed
     public ArrayList<Issue>issues=new ArrayList<Issue>(){
         {
             add(new Issue("Climate change","Environmental"));
             add(new Issue("Global poverty", "Human rights"));
             add(new Issue("Human rights", "Human rights"));
-            add(new Issue("Cyber security", "Security"));
-            add(new Issue("Trade agreements", "Economic"));
             add(new Issue("Healthcare access", "Human rights"));
             add(new Issue("Education reform", "Human rights"));
             add(new Issue("Gender equality", "Gender"));
-            add(new Issue("Terrorism", "War"));
             add(new Issue("Environmental conservation", "Environmental"));
             add(new Issue("Income inequality", "Human rights"));
             add(new Issue("Refugee crisis", "Human rights"));
-            add(new Issue("Nuclear disarmament", "Security"));
             add(new Issue("Water scarcity", "Environmental"));
-            add(new Issue("Political corruption", "Political"));
             add(new Issue("Drug trafficking", "Security"));
             add(new Issue("Racial discrimination", "Human rights"));
             add(new Issue("Poverty eradication", "Human rights"));
             add(new Issue("Energy sustainability", "Environmental"));
-            add(new Issue("Armed conflicts", "War"));
-            add(new Issue("Internet censorship", "Political"));
             add(new Issue("Labor rights", "Human rights"));
-            add(new Issue("Immigration policies", "Political"));
-            add(new Issue("Maritime security", "Security"));
             add(new Issue("Food security", "Environmental"));
             add(new Issue("Natural disaster response", "Environmental"));
-            add(new Issue("Digital privacy", "Security"));
             add(new Issue("Access to clean water", "Environmental"));
             add(new Issue("Cultural preservation", "Human rights"));
             add(new Issue("Child labor", "Human rights"));
@@ -237,10 +235,7 @@ public class GeneralAssembly {
             add(new Issue("Privacy rights", "Human rights"));
             add(new Issue("Illegal wildlife trade", "Environmental"));
             add(new Issue("Refugee rights", "Human rights"));
-            add(new Issue("Political instability", "Political"));
-            add(new Issue("Drug abuse", "Social"));
             add(new Issue("Ethnic conflicts", "Human rights"));
-            add(new Issue("Corruption in sports", "Political"));
             add(new Issue("Access to education", "Human rights"));
             add(new Issue("Climate refugee crisis", "Human rights"));
             add(new Issue("Childhood immunization", "Health"));
@@ -252,39 +247,27 @@ public class GeneralAssembly {
             add(new Issue("Animal rights", "Environmental"));
             add(new Issue("Urbanization challenges", "Environmental"));
             add(new Issue("Human trafficking", "Human rights"));
-            add(new Issue("Internet freedom", "Political"));
             add(new Issue("Child marriage", "Human rights"));
             add(new Issue("Water pollution", "Environmental"));
-            add(new Issue("Youth unemployment", "Social"));
             add(new Issue("Freedom of religion", "Human rights"));
             add(new Issue("Deforestation", "Environmental"));
-            add(new Issue("Economic sanctions", "Political"));
             add(new Issue("Refugee resettlement", "Human rights"));
-            add(new Issue("Cybercrime", "Security"));
             add(new Issue("Hate crimes", "Human rights"));
             add(new Issue("Pollution control", "Environmental"));
             add(new Issue("Poverty cycle", "Human rights"));
-            add(new Issue("Surveillance state", "Security"));
             add(new Issue("Mental health awareness", "Health"));
             add(new Issue("Access to clean sanitation", "Health"));
             add(new Issue("Access to reproductive healthcare", "Health"));
             add(new Issue("Disaster preparedness", "Environmental"));
             add(new Issue("Discrimination in the workplace", "Human rights"));
             add(new Issue("Renewable energy", "Environmental"));
-            add(new Issue("Political polarization", "Political"));
-            add(new Issue("Youth empowerment", "Social"));
             add(new Issue("Biodiversity loss", "Environmental"));
-            add(new Issue("Arms trade", "War"));
             add(new Issue("Waste management", "Environmental"));
             add(new Issue("Violence against women", "Human rights"));
             add(new Issue("Air pollution", "Environmental"));
-            add(new Issue("Genetic privacy", "Security"));
             add(new Issue("Sustainable agriculture", "Environmental"));
-            add(new Issue("Political censorship", "Political"));
-            add(new Issue("Elderly care", "Social"));
             add(new Issue("Ocean pollution", "Environmental"));
             add(new Issue("Humanitarian aid", "Human rights"));
-            add(new Issue("Artificial intelligence ethics", "Security"));
             add(new Issue("Access to affordable healthcare technology", "Health"));
             add(new Issue("Healthcare for veterans", "Health"));
             add(new Issue("Health literacy in underserved populations", "Health"));
@@ -292,9 +275,7 @@ public class GeneralAssembly {
             add(new Issue("Telemedicine and remote healthcare", "Health"));
             add(new Issue("Ocean pollution", "Environmental"));
             add(new Issue("Humanitarian aid", "Human rights"));
-            add(new Issue("Artificial intelligence ethics", "Security"));
             add(new Issue("Child protection", "Human rights"));
-            add(new Issue("Space exploration", "Scientific"));
             add(new Issue("Access to healthcare", "Human rights"));
             add(new Issue("Climate justice", "Environmental"));
             add(new Issue("Worker exploitation", "Human rights"));
@@ -302,10 +283,8 @@ public class GeneralAssembly {
             add(new Issue("Freedom of assembly", "Human rights"));
             add(new Issue("Land rights", "Human rights"));
             add(new Issue("Nuclear weapons proliferation", "War"));
-            add(new Issue("Housing affordability", "Social"));
             add(new Issue("E-waste management", "Environmental"));
             add(new Issue("Disability rights", "Human rights"));
-            add(new Issue("Genetic engineering", "Science"));
             add(new Issue("Nutrition education", "Health"));
             add(new Issue("Community health promotion", "Health"));
             add(new Issue("Access to mental health medications", "Health"));
@@ -320,437 +299,75 @@ public class GeneralAssembly {
             add(new Issue("Healthcare for prisoners", "Health"));
             add(new Issue("Accessible healthcare facilities and transportation", "Health"));
             add(new Issue("Access to clean energy", "Environmental"));
-            add(new Issue("Income tax reform", "Economic"));
-            add(new Issue("Civic engagement", "Political"));
             add(new Issue("Substance abuse prevention", "Health"));
             add(new Issue("Healthcare for the elderly", "Health"));
             add(new Issue("Obesity prevention", "Health"));
-            add(new Issue("Illegal immigration", "Political"));
             add(new Issue("Erosion of privacy rights", "Human rights"));
             add(new Issue("Water conservation", "Environmental"));
             add(new Issue("Child welfare", "Human rights"));
             add(new Issue("Space debris", "Environmental"));
             add(new Issue("Indigenous rights", "Human rights"));
-            add(new Issue("Nuclear accidents", "Security"));
             add(new Issue("Healthcare for marginalized communities", "Health"));
             add(new Issue("Palliative care and end-of-life support", "Health"));
-
-
         }
-
     };
-    public Issue issue;
-    public void addGNI(){
-                // Afghanistan
-                nations.get(0).setGNIPerCapita(380);
-        // Albania
-                nations.get(1).setGNIPerCapita(6770);
-        // Algeria
-                nations.get(2).setGNIPerCapita(3920);
-        // Andorra
-                nations.get(3).setGNIPerCapita(44350);
-        // Angola
-                nations.get(4).setGNIPerCapita(1880);
-        // Antigua and Barbuda
-                nations.get(5).setGNIPerCapita(19050);
-        // Argentina
-                nations.get(6).setGNIPerCapita(11590);
-        // Armenia
-                nations.get(7).setGNIPerCapita(5960);
-        // Australia
-                nations.get(8).setGNIPerCapita(60840);
-        // Austria
-                nations.get(9).setGNIPerCapita(55720);
-        // Azerbaijan
-                nations.get(10).setGNIPerCapita(5660);
-        // Bahamas, The
-                nations.get(11).setGNIPerCapita(31520);
-        // Bahrain
-                nations.get(12).setGNIPerCapita(27720);
-        // Bangladesh
-                nations.get(13).setGNIPerCapita(2820);
-        // Barbados
-                nations.get(14).setGNIPerCapita(19490);
-        // Belarus
-                nations.get(15).setGNIPerCapita(7210);
-        // Belgium
-                nations.get(16).setGNIPerCapita(53890);
-        // Belize
-                nations.get(17).setGNIPerCapita(6630);
-        // Benin
-                nations.get(18).setGNIPerCapita(1400);
-        // Bhutan
-                nations.get(19).setGNIPerCapita(3290);
-        // Bolivia
-                nations.get(20).setGNIPerCapita(3490);
-        // Bosnia and Herzegovina
-                nations.get(21).setGNIPerCapita(7660);
-        // Botswana
-                nations.get(22).setGNIPerCapita(7430);
-        // Brazil
-                nations.get(23).setGNIPerCapita(8140);
-        // Brunei Darussalam
-                nations.get(24).setGNIPerCapita(31410);
-        // Bulgaria
-                nations.get(25).setGNIPerCapita(13350);
-        // Burundi
-                nations.get(26).setGNIPerCapita(240);
-        // Cabo Verde
-                nations.get(27).setGNIPerCapita(3950);
-        // Cambodia
-                nations.get(28).setGNIPerCapita(1690);
-        // Cameroon
-                nations.get(29).setGNIPerCapita(1640);
-        // Canada
-                nations.get(30).setGNIPerCapita(53310);
-        // Central African Republic
-                nations.get(31).setGNIPerCapita(480);
-        // Chad
-                nations.get(32).setGNIPerCapita(690);
-        // Chile
-                nations.get(33).setGNIPerCapita(15360);
-        // China
-                nations.get(34).setGNIPerCapita(12850);
-        // Colombia
-                nations.get(35).setGNIPerCapita(6500);
-        // Comoros
-                nations.get(36).setGNIPerCapita(1610);
-        // Congo, Dem. Rep.
-                nations.get(37).setGNIPerCapita(610);
-        // Congo, Rep.
-                nations.get(38).setGNIPerCapita(2290);
-        // Costa Rica
-                nations.get(39).setGNIPerCapita(12920);
-        // Cote d'Ivoire
-                nations.get(40).setGNIPerCapita(2620);
-        // Croatia
-                nations.get(41).setGNIPerCapita(19600);
-        // Cuba
-                nations.get(42).setGNIPerCapita(8920);
-        // Cyprus
-                nations.get(43).setGNIPerCapita(31520);
-        // Czechia
-                nations.get(44).setGNIPerCapita(26100);
-        // Denmark
-                nations.get(45).setGNIPerCapita(73520);
-        // Djibouti
-                nations.get(46).setGNIPerCapita(3310);
-        // Dominica
-                nations.get(47).setGNIPerCapita(8430);
-        // Dominican Republic
-                nations.get(48).setGNIPerCapita(9050);
-        // Ecuador
-                nations.get(49).setGNIPerCapita(6300);
 
-// Egypt, Arab Rep.
-        nations.get(50).setGNIPerCapita(4100);
+    private int finalResult;// Final result of the resolution
+    public Issue issue;// The selected issue for the conference
 
-// El Salvador
-        nations.get(51).setGNIPerCapita(4720);
-
-// Equatorial Guinea
-        nations.get(52).setGNIPerCapita(5240);
-
-// Eritrea
-        nations.get(53).setGNIPerCapita(610);
-
-// Estonia
-        nations.get(54).setGNIPerCapita(27120);
-
-// Eswatini
-        nations.get(55).setGNIPerCapita(3750);
-
-// Ethiopia
-        nations.get(56).setGNIPerCapita(1020);
-
-// Fiji
-        nations.get(57).setGNIPerCapita(5390);
-
-// Finland
-        nations.get(58).setGNIPerCapita(54890);
-
-// France
-        nations.get(59).setGNIPerCapita(45290);
-
-// Gabon
-        nations.get(60).setGNIPerCapita(7530);
-
-// Gambia, The
-        nations.get(61).setGNIPerCapita(800);
-
-// Georgia
-        nations.get(62).setGNIPerCapita(5600);
-
-// Germany
-        nations.get(63).setGNIPerCapita(54030);
-
-// Ghana
-        nations.get(64).setGNIPerCapita(2380);
-
-// Greece
-        nations.get(65).setGNIPerCapita(21810);
-
-// Grenada
-        nations.get(66).setGNIPerCapita(9070);
-
-// Guatemala
-        nations.get(67).setGNIPerCapita(5350);
-
-// Guinea
-        nations.get(68).setGNIPerCapita(1190);
-
-// Guinea-Bissau
-        nations.get(69).setGNIPerCapita(820);
-
-// Guyana
-        nations.get(70).setGNIPerCapita(14920);
-
-// Haiti
-        nations.get(71).setGNIPerCapita(1610);
-
-// Honduras
-        nations.get(72).setGNIPerCapita(2750);
-
-// Hungary
-        nations.get(73).setGNIPerCapita(19010);
-
-// Iceland
-        nations.get(74).setGNIPerCapita(68660);
-
-// India
-        nations.get(75).setGNIPerCapita(2390);
-
-// Indonesia
-        nations.get(76).setGNIPerCapita(4580);
-
-// Iran, Islamic Rep.
-        nations.get(77).setGNIPerCapita(3980);
-
-// Iraq
-        nations.get(78).setGNIPerCapita(5270);
-
-// Ireland
-        nations.get(79).setGNIPerCapita(79730);
-
-// Israel
-        nations.get(80).setGNIPerCapita(55140);
-
-// Italy
-        nations.get(81).setGNIPerCapita(38200);
-
-// Jamaica
-        nations.get(82).setGNIPerCapita(5760);
-
-// Japan
-        nations.get(83).setGNIPerCapita(42550);
-
-// Jordan
-        nations.get(84).setGNIPerCapita(4350);
-
-// Kazakhstan
-        nations.get(85).setGNIPerCapita(9620);
-
-// Kenya
-        nations.get(86).setGNIPerCapita(2170);
-
-// Kiribati
-        nations.get(87).setGNIPerCapita(2810);
-
-// Korea, Dem. People's Rep.
-        nations.get(88).setGNIPerCapita(0);
-
-// Korea, Rep.
-        nations.get(89).setGNIPerCapita(36190);
-
-// Kosovo
-        nations.get(90).setGNIPerCapita(5660);
-
-// Kuwait
-        nations.get(91).setGNIPerCapita(40600);
-
-// Kyrgyzstan
-        nations.get(92).setGNIPerCapita(1440);
-
-// Laos
-        nations.get(93).setGNIPerCapita(2310);
-
-// Latvia
-        nations.get(94).setGNIPerCapita(21850);
-
-// Lebanon
-        nations.get(95).setGNIPerCapita(4970);
-
-// Lesotho
-        nations.get(96).setGNIPerCapita(1230);
-
-// Liberia
-        nations.get(97).setGNIPerCapita(680);
-        nations.get(98).setGNIPerCapita(7260);
-        nations.get(99).setGNIPerCapita(116600);
-        nations.get(100).setGNIPerCapita(23870);
-        nations.get(101).setGNIPerCapita(89200);
-        nations.get(102).setGNIPerCapita(510);
-        nations.get(103).setGNIPerCapita(640);
-        nations.get(104).setGNIPerCapita(11680);
-        nations.get(105).setGNIPerCapita(8680);
-        nations.get(106).setGNIPerCapita(1050);
-        nations.get(107).setGNIPerCapita(39760);
-        nations.get(108).setGNIPerCapita(0); // Marshall Islands
-        nations.get(109).setGNIPerCapita(2870);
-        nations.get(110).setGNIPerCapita(12990);
-        nations.get(111).setGNIPerCapita(10810);
-        nations.get(112).setGNIPerCapita(0); // Micronesia, Fed. Sts.
-        nations.get(113).setGNIPerCapita(0); // Monaco
-        nations.get(114).setGNIPerCapita(4850);
-        nations.get(115).setGNIPerCapita(9820);
-        nations.get(116).setGNIPerCapita(3460);
-        nations.get(117).setGNIPerCapita(480);
-        nations.get(118).setGNIPerCapita(1480);
-        nations.get(119).setGNIPerCapita(5210);
-        nations.get(120).setGNIPerCapita(0); // Nauru
-        nations.get(121).setGNIPerCapita(1040);
-        nations.get(122).setGNIPerCapita(57820);
-        nations.get(123).setGNIPerCapita(51280);
-        nations.get(124).setGNIPerCapita(2620);
-        nations.get(125).setGNIPerCapita(520);
-        nations.get(126).setGNIPerCapita(2040);
-        nations.get(127).setGNIPerCapita(7920);
-        nations.get(128).setGNIPerCapita(87820);
-        nations.get(129).setGNIPerCapita(24820);
-        nations.get(130).setGNIPerCapita(1470);
-        nations.get(131).setGNIPerCapita(0); // Palau
-        nations.get(132).setGNIPerCapita(13230);
-        nations.get(133).setGNIPerCapita(2080);
-        nations.get(134).setGNIPerCapita(4880);
-        nations.get(135).setGNIPerCapita(6170);
-        nations.get(136).setGNIPerCapita(3950);
-        nations.get(137).setGNIPerCapita(17190);
-        nations.get(138).setGNIPerCapita(23750);
-        nations.get(139).setGNIPerCapita(57080);
-        nations.get(140).setGNIPerCapita(13890);
-        nations.get(141).setGNIPerCapita(10960);
-        nations.get(142).setGNIPerCapita(890);
-        nations.get(143).setGNIPerCapita(24710);
-        nations.get(144).setGNIPerCapita(9650);
-        nations.get(145).setGNIPerCapita(7320);
-        nations.get(146).setGNIPerCapita(4420);
-        nations.get(147).setGNIPerCapita(0); // San Marino
-        nations.get(148).setGNIPerCapita(3270);
-        nations.get(149).setGNIPerCapita(21330);
-        nations.get(150).setGNIPerCapita(1870);
-        nations.get(151).setGNIPerCapita(7820);
-        nations.get(152).setGNIPerCapita(19350);
-        nations.get(153).setGNIPerCapita(1030);
-        nations.get(154).setGNIPerCapita(90570);
-        nations.get(155).setGNIPerCapita(23120);
-        nations.get(156).setGNIPerCapita(24550);
-        nations.get(157).setGNIPerCapita(2060);
-        nations.get(158).setGNIPerCapita(0); // Somalia
-        nations.get(159).setGNIPerCapita(6850);
-        nations.get(160).setGNIPerCapita(520);
-        nations.get(161).setGNIPerCapita(29080);
-        nations.get(162).setGNIPerCapita(4230);
-        nations.get(163).setGNIPerCapita(1280);
-        nations.get(164).setGNIPerCapita(7810);
-        nations.get(165).setGNIPerCapita(58940);
-        nations.get(166).setGNIPerCapita(80660);
-        nations.get(167).setGNIPerCapita(0); // Syrian Arab Republic
-        nations.get(168).setGNIPerCapita(0); // Taiwan, China
-        nations.get(169).setGNIPerCapita(1020);
-        nations.get(170).setGNIPerCapita(1120);
-        nations.get(171).setGNIPerCapita(7260);
-        nations.get(172).setGNIPerCapita(2480);
-        nations.get(173).setGNIPerCapita(780);
-        nations.get(174).setGNIPerCapita(3370);
-        nations.get(175).setGNIPerCapita(31710);
-        nations.get(176).setGNIPerCapita(4380);
-        nations.get(177).setGNIPerCapita(9720);
-        nations.get(178).setGNIPerCapita(8230);
-        nations.get(179).setGNIPerCapita(0); // Tuvalu
-        nations.get(180).setGNIPerCapita(900);
-        nations.get(181).setGNIPerCapita(4600);
-        nations.get(182).setGNIPerCapita(38250);
-        nations.get(183).setGNIPerCapita(47760);
-        nations.get(184).setGNIPerCapita(63410);
-        nations.get(185).setGNIPerCapita(16050);
-        nations.get(186).setGNIPerCapita(2960);
-        nations.get(187).setGNIPerCapita(3190);
-        nations.get(188).setGNIPerCapita(0); // Venezuela, RB
-        nations.get(189).setGNIPerCapita(2970);
-        nations.get(190).setGNIPerCapita(0); // Yemen, Rep.
-        nations.get(191).setGNIPerCapita(1390);
-        nations.get(192).setGNIPerCapita(1440);
-
-    }
-
+    /**
+     * Selects a random issue from the list of issues and sets it as the current issue for the conference.
+     */
     public void selectIssue(){
         Random rand= new Random();
         int n=rand.nextInt(issues.size());
         this.issue = issues.get(n);
 
     }
+    /**
+     * Retrieves the currently selected issue for the conference.
+     *
+     * @return The currently selected issue.
+     */
     public Issue getIssue(){
         return this.issue;
 
     }
+
+    /**
+     * Initiates a conference by selecting an issue and printing its name.
+     */
+
+    /**
+     * Initiates a conference by selecting an issue
+     */
     public void initiateConference(){
         selectIssue();
-        System.out.println(getIssue().getName());
     }
 
-    public void addNation(String Country, double GDP,double GDPperCapita, double CINC,String continent){
-        Nation nation=new Nation(Country,GDP,GDPperCapita,CINC,continent);
-        this.nations.add(nation);
-    }
-    public void printNations(){
-        for (Nation nation: nations){
-            System.out.println(nation.getName());
-    }
-
-    }
-
-
-    public void printPowers(){
-        int n=0;
-        double z=0;
-        double g=0;
-        int l=0;
-        for (Nation nation:nations){
-            System.out.printf("%s has a power of %.6f\n",nation.getName(),nation.CalculatePower());
-            n+=1;
-            z+=nation.CalculatePower();
-        }
-        System.out.println("Total Countries: "+n);
-        System.out.println("power t"+ z);
-        for (Nation nation: nations){
-            nation.setPower(nation.getPower()/z);
-            System.out.printf("%s has a power of %.6f\n",nation.getName(),nation.getPower());
-            g+=nation.getPower();
-
-        }
-        for (Nation nation: nations){
-            if (nation.getPower()>2*0.0051){
-
-
-                l+=1;
-            }
-        }
-        System.out.printf("Power %.6f\n",g);
-        System.out.println(n);
-        System.out.println(l);
-
-    }
-
+/**
+ * Ends the conference by calculating the results, including voting statistics, total power, and the final result
+ * of the resolution. It also determines the outcome for rebellious nations and provides information on the payoff distribution.**/
     public void endConference(){
+        int rebels=0;
         double totalPower=0;
         double newTotalPower=0;
+        int stagYes=0;
+        int stagNo=0;
+        int stagAbstain=0;
+        int rabbitYes=0;
+        int rabbitNo=0;
+        int rabbitAbstain=0;
         int no=0;
         int abstain=0;
         int yes=0;
         String str="";
-
         for (Nation nation:nations){
             nation.makeVote();
+            nation.addPayoff();
+            totalPower+=nation.getPower();
+        }
+        for (Nation nation: nations){
             switch (nation.getVote()){
                 case 0:
                     str="NO";
@@ -765,35 +382,97 @@ public class GeneralAssembly {
                     yes++;
                     break;
             }
-            nation.addPayoff();
-            System.out.print(nation.getName()+"  "+ nation.getInclination()+" "+str+ " ");
-            System.out.printf("%.5f\n",nation.getPower());
-            totalPower+=nation.getPower();
-
-        }
-        for (Nation nation: nations){
             nation.setPower(nation.getPower()/totalPower);
             newTotalPower+=nation.getPower();
-            System.out.print(nation.getName()+"  "+ nation.getInclination()+" "+str+ " ");
-            System.out.printf("%.6f\n",nation.getPower());
+            System.out.print(nation.getName()+" | "+str+ " | ");
+            System.out.printf("Inclination: %.2f | ",nation.getInclination());
+            System.out.printf("Power: %.6f\n",nation.getPower());
         }
 
-        System.out.print("Total Yes votes: " +yes+
+        for (Nation nation:nations){
+            if (nation.isRebel){
+                switch (nation.getVote()){
+                    case 0:
+                        stagNo++;
+                        break;
+                    case 1:
+                        stagAbstain++;
+                        break;
+                    case 2:
+                        stagYes++;
+                        break;
+                }
+
+            }
+            else{
+                switch (nation.getVote()){
+                    case 0:
+                        rabbitNo++;
+                        break;
+                    case 1:
+                        rabbitAbstain++;
+                        break;
+                    case 2:
+                        rabbitYes++;
+                        break;
+                }
+
+            }
+
+        }
+
+        System.out.print(
+                "Total Yes votes: " +yes+
                 "\nTotal No Votes: "+ no+
                 "\nTotal Abstain Votes: "+abstain+
-                "\nNew total power: "+newTotalPower
+                "\nNew total power: "+newTotalPower+
+                "\nTotal Yes stag votes: " +stagYes+
+                "\nTotal No stag Votes: "+ stagNo+
+                "\nTotal Abstain stag Votes: "+stagAbstain+
+                "\nTotal No rabbit Votes: "+ rabbitNo+
+                "\nTotal Abstain rabbit Votes: "+rabbitAbstain
+                +"\nTotal Yes rabbit votes: "+rabbitYes
         );
         if (yes>no){
-            System.out.printf("\n Final Result: The resolution is passed");
+            finalResult=1;
+            System.out.println("\nFinal Result: The resolution is passed");
         }
 
         else{
-            System.out.println("\n Final Result: resolution is not passed");
+            finalResult=0;
+            System.out.println("\nFinal Result: resolution is not passed");
 
         }
-    }
+        if (finalResult==1){
+            if (stagYes>rabbitYes){
+                System.out.println("\nNations that rebelled against the leader received greater payoff");
+
+            }
+            else if (rabbitYes>stagYes){
+                System.out.println("\nNations that didn't rebel against the leader received greater payoff");
 
 
-    public void addNation(Nation nation) {
+            }
+            else{
+                System.out.println("\nNations received similar payoffs regardless of rebellions");
+            }
+
+        }
+        else{
+            if (stagNo>rabbitNo){
+                System.out.println("\nNations that rebelled against the leader received greater payoff");
+
+            }
+            else if (rabbitNo>stagNo){
+                System.out.println("\nNations that didn't rebel against the leader received greater payoff");
+
+
+            }
+            else{
+                System.out.println("\nNations received similar payoffs regardless of rebellions");
+            }
+
+
+        }
     }
 }
