@@ -422,7 +422,8 @@ public class GeneralAssembly {
         }
 
         System.out.print(
-                "Total Yes votes: " +yes+
+                String.format("Issue: %s", issue.getName())+
+                "\nTotal Yes votes: " +yes+
                 "\nTotal No Votes: "+ no+
                 "\nTotal Abstain Votes: "+abstain+
                 "\nNew total power: "+newTotalPower+

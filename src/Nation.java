@@ -158,6 +158,14 @@ public class Nation {
         this.power = (((this.gdp * this.gdpPerCapita) / (101.3E12 * 18381)) + this.CINC) / 2;
         return this.power;
     }
+    /**
+     * Sets the power of the nation.
+     *
+     * @param number The power value to be set.
+     */
+    public void setPower(double number) {
+        this.power = number;
+    }
 
     /**
      * Returns the power of the nation.
@@ -168,14 +176,7 @@ public class Nation {
         return this.power;
     }
 
-    /**
-     * Sets the power of the nation.
-     *
-     * @param number The power value to be set.
-     */
-    public void setPower(double number) {
-        this.power = number;
-    }
+
 
     /**
      * Returns the CINC of the nation.
